@@ -1,0 +1,11 @@
+.NewsFeedItem {
+    -webkit-box-shadow: -3px 3px 9px 0px rgba(0,0,0,0.13);
+    -moz-box-shadow: -3px 3px 9px 0px rgba(0,0,0,0.13);
+    box-shadow: -3px 3px 9px 0px rgba(0,0,0,0.13);
+}
+
+.NewsFeedItem:hover{
+    -webkit-box-shadow: -7px 7px 9px 0px rgba(0,0,0,0.13);
+    -moz-box-shadow: -7px 7px 9px 0px rgba(0,0,0,0.13);
+    box-shadow: -7px 7px 9px 0px rgba(0,0,0,0.13);
+}
