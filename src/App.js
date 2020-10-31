@@ -9,12 +9,12 @@ import DataFeed from './components/DataFeed';
 
 function App() {
   return (
-    <Container fluid className="p-3 App h-100">
+    <Container fluid className="App p-3 h-100">
       <Row className="h-100">
         <Col md={6} lg={7} xl={8}>
           <NewsFeed></NewsFeed>
         </Col>
-        <Col>
+        <Col md={6} lg={5} xl={4}>
           <DataFeed></DataFeed>
         </Col>
       </Row>

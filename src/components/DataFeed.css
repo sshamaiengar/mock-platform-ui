@@ -1,8 +1,8 @@
 .DataFeed {
     background-color: #1B9AAA;
     color: white;
-    height: 100%;
-    border-radius: 5px;
+    height: 100vh;
+    border-radius: 0.5em;
     -webkit-box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
     -moz-box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
     box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
