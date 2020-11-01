@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import { Heart, Chat, PersonCircle } from 'react-bootstrap-icons';
 
 const NewsFeedItem = (props) => (
-    <Card className="NewsFeedItem my-5">
+    <Card border="light" className="NewsFeedItem my-5">
         <Card.Body>
             <Row>
                 <Col xs="auto">
