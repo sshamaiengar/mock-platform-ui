@@ -8,3 +8,16 @@
     box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
     overflow-y: scroll;
 }
+
+.move-enter {
+    opacity: 0.01;
+    /* height: 0; */
+    transform: translate(-40px, 0)
+}
+
+.move-enter-active {
+    opacity: 1;
+    transform: translate(0, 0);
+    /* height: 100%; */
+    transition: all 250ms ease-in;
+}
