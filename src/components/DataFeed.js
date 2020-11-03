@@ -5,10 +5,10 @@ import './DataFeed.css'
 const DataFeed = (props) => {
     const items = props.getAllMetrics()
         .sort((a, b) => b.date - a.date)
-        .map(metric => (
+        .map((metric, i) => (
             <DataFeedItem 
                 {...metric} 
-                key={`${metric.date.toISOString()}`} />
+                key={`${i}_${metric.date.toISOString()}`} />
 		));
 
     return (
