@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import NewsFeedItem from './NewsFeedItem';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import VisibilitySensor from 'react-visibility-sensor';
 
 import './NewsFeed.css';
 
@@ -55,7 +56,15 @@ class NewsFeed extends Component {
             console.log(item);
             return item;
         }))
+    }
 
+    onItemVisibilityChange(isVisible, i) {
+        const actionString = isVisible ? 'started' : 'stopped';
+        const now = new Date();
+        this.props.collectMetric({
+            text: `User ${actionString} viewing post by ${this.state.items[i].author.name}`,
+            date: now
+        });
     }
 
     render() {
@@ -65,15 +74,22 @@ class NewsFeed extends Component {
                 <Row className="justify-content-md-center">
                     <Col lg={9}>
                         {this.state.items.map((item, i) => (
-                            <NewsFeedItem
-                                key={`${item.author.name}_${item.date}`}
-                                author={item.author}
-                                text={item.text}
-                                date={item.date}
-                                liked={item.liked}
-                                onLike={() => this.onLikeItem(i)}
-                                collectMetric={this.props.collectMetric}
-                            />
+                            <VisibilitySensor key={i} onChange={(isVisible) => this.onItemVisibilityChange(isVisible, i)}>
+                                {({isVisible}) => {
+                                    return (
+                                        <NewsFeedItem
+                                            key={`${item.author.name}_${item.date}`}
+                                            author={item.author}
+                                            text={item.text}
+                                            date={item.date}
+                                            liked={item.liked}
+                                            onLike={() => this.onLikeItem(i)}
+                                            collectMetric={this.props.collectMetric}
+                                        />
+                                    )
+                                }}
+                                
+                            </VisibilitySensor>
                         ))}
                     </Col>
                 </Row>
