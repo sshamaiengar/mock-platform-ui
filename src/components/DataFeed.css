@@ -6,4 +6,5 @@
     -webkit-box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
     -moz-box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
     box-shadow: -5px 5px 9px 0px rgba(0,0,0,0.13);
+    overflow-y: scroll;
 }
