@@ -25,6 +25,12 @@ const items = [
         text: "Fusce imperdiet est id sapien gravida molestie vel quis turpis. Phasellus eget elementum risus. Cras luctus, metus ut porttitor convallis, ligula lacus ullamcorper mauris, in placerat ipsum ligula non leo. Proin iaculis est lectus. Fusce ullamcorper urna eget congue euismod. Mauris condimentum vel urna ac iaculis. Nam consectetur vitae tortor ac ultricies. Fusce semper nulla ut urna dignissim, ut tincidunt lorem egestas. Vestibulum suscipit auctor eleifend.",
         date: new Date("2020-10-29T10:00:00"),
         liked: false
+    },
+    {
+        author: {name: "Ted Sarasota"},
+        text: "Fusce imperdiet est id sapien gravida molestie vel quis turpis. Phasellus eget elementum risus. Cras luctus, metus ut porttitor convallis, ligula lacus ullamcorper mauris, in placerat ipsum ligula non leo. Proin iaculis est lectus. Fusce ullamcorper urna eget congue euismod. Mauris condimentum vel urna ac iaculis. Nam consectetur vitae tortor ac ultricies. Fusce semper nulla ut urna dignissim, ut tincidunt lorem egestas. Vestibulum suscipit auctor eleifend.",
+        date: new Date("2020-10-28T11:00:00"),
+        liked: false
     }
 ]
 
@@ -59,6 +65,7 @@ class NewsFeed extends Component {
                                 date={item.date}
                                 liked={item.liked}
                                 onLike={() => this.onLikeItem(i)}
+                                collectMetric={this.props.collectMetric}
                             />
                         ))}
                     </Col>

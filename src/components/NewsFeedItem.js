@@ -1,13 +1,26 @@
 import './NewsFeedItem.css';
 
+import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Heart, HeartFill, Chat, PersonCircle } from 'react-bootstrap-icons';
 
-const NewsFeedItem = (props) => (
-    <Card border="light" className="NewsFeedItem my-5">
+const NewsFeedItem = (props) => {
+	const authorName = props.author.name;
+	const { collectMetric } = props;
+	const [ screenEnterTime ] = useState(new Date());
+
+    useEffect(() => {
+        collectMetric({
+            text: `Post by ${authorName} rendered at ${screenEnterTime.toLocaleString()}`,
+            date: screenEnterTime
+        });
+    }, []); // empty array means only runs when the component is mounted
+
+    return (
+	<Card border="light" className="NewsFeedItem my-5">
         <Card.Body>
             <Row>
                 <Col xs="auto">
@@ -35,6 +48,7 @@ const NewsFeedItem = (props) => (
             </Row>
         </Card.Body>
     </Card>
-)
+	);
+};
 
 export default NewsFeedItem;
