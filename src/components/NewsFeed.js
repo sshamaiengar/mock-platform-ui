@@ -42,6 +42,12 @@ class NewsFeed extends Component {
     }
 
     onLikeItem(i) {
+        const actionString = this.state.items[i].liked ? 'un-liked' : 'liked';
+        const now = new Date();
+        this.props.collectMetric({
+            text: `Post by ${this.state.items[i].author.name} ${actionString}`,
+            date: now
+        });
         this.setState(this.state.items.map((item, j) => {
             if (i === j) {
                 item.liked = !item.liked;
@@ -49,6 +55,7 @@ class NewsFeed extends Component {
             console.log(item);
             return item;
         }))
+
     }
 
     render() {

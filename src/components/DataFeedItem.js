@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import './DataFeedItem.css'
 
 const DataFeedItem = (props) => (
-	<Card border="light" className="DataFeedItem text-body my-5">
+	<Card border="light" className="DataFeedItem text-body my-3">
         <Card.Body>
             <Card.Text>
                 {props.text}

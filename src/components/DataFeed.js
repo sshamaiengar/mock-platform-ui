@@ -3,11 +3,13 @@ import DataFeedItem from './DataFeedItem';
 import './DataFeed.css'
 
 const DataFeed = (props) => {
-    const items = props.getAllMetrics().map(metric => (
-        <DataFeedItem 
-            {...metric} 
-            key={`${metric.date.toISOString()}`} />
-    ));
+    const items = props.getAllMetrics()
+        .sort((a, b) => b.date - a.date)
+        .map(metric => (
+            <DataFeedItem 
+                {...metric} 
+                key={`${metric.date.toISOString()}`} />
+		));
 
     return (
         <Container fluid className="DataFeed sticky-top p-3">
