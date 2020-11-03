@@ -39,7 +39,13 @@ const items = [
 class NewsFeed extends Component {
     constructor(props) {
         super(props);
-        this.state = { items: items };
+        this.state = {
+            items: items,
+            itemVisibility: items.map((item) => ({
+                time: new Date(),
+                isVisible: false // need previous state to identify items initially out of view
+            })) // will be a list of Date objects
+        };
     }
 
     onLikeItem(i) {
@@ -49,22 +55,45 @@ class NewsFeed extends Component {
             text: `Post by ${this.state.items[i].author.name} ${actionString}`,
             date: now
         });
-        this.setState(this.state.items.map((item, j) => {
-            if (i === j) {
-                item.liked = !item.liked;
-            }
-            console.log(item);
-            return item;
-        }))
+        this.setState({
+            items: this.state.items.map((item, j) => {
+                if (i === j) {
+                    item.liked = !item.liked;
+                }
+                console.log(item);
+                return item;
+            })
+        });
     }
 
     onItemVisibilityChange(isVisible, i) {
         const actionString = isVisible ? 'started' : 'stopped';
         const now = new Date();
-        this.props.collectMetric({
-            text: `User ${actionString} viewing post by ${this.state.items[i].author.name}`,
-            date: now
-        });
+        const { time: prevTime, isVisible: prevVisible } = this.state.itemVisibility[i];
+        
+        if (isVisible || prevVisible) {
+            let intervalString = "";
+            if (!isVisible) { // items leaving viewport after being visible
+                const intervalMs = now.getTime() - prevTime;
+                intervalString = ` after ${intervalMs/1000.0} seconds`;
+            } 
+
+            // update item visibility state
+            this.setState({
+                itemVisibility: this.state.itemVisibility.map((item, j) => {
+                    if (i === j) {
+                        item.time = now;
+                        item.isVisible = isVisible;
+                    }
+                    return item;
+                })
+            });
+
+            this.props.collectMetric({
+                text: `User ${actionString} viewing post by ${this.state.items[i].author.name}${intervalString}`,
+                date: now
+            });
+        } // don't do anything for items that are initially outside the viewport
     }
 
     render() {
