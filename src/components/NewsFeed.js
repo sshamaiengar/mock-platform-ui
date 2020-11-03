@@ -104,20 +104,15 @@ class NewsFeed extends Component {
                     <Col lg={9}>
                         {this.state.items.map((item, i) => (
                             <VisibilitySensor key={i} onChange={(isVisible) => this.onItemVisibilityChange(isVisible, i)}>
-                                {({isVisible}) => {
-                                    return (
-                                        <NewsFeedItem
-                                            key={`${item.author.name}_${item.date}`}
-                                            author={item.author}
-                                            text={item.text}
-                                            date={item.date}
-                                            liked={item.liked}
-                                            onLike={() => this.onLikeItem(i)}
-                                            collectMetric={this.props.collectMetric}
-                                        />
-                                    )
-                                }}
-                                
+                                <NewsFeedItem
+                                    key={`${item.author.name}_${item.date}`}
+                                    author={item.author}
+                                    text={item.text}
+                                    date={item.date}
+                                    liked={item.liked}
+                                    onLike={() => this.onLikeItem(i)}
+                                    collectMetric={this.props.collectMetric}
+                                />
                             </VisibilitySensor>
                         ))}
                     </Col>
